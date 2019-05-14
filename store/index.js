@@ -78,41 +78,58 @@ const createStore = () => {
       },
     },
     actions: {
-      POSITION_SET({ commit, dispatch }, pos) {
+      POSITION_SET({
+        commit,
+        dispatch
+      }, pos) {
         commit('POSITION_SET', pos);
         return dispatch('SEARCH_RUN');
       },
-      PRICE_SET({ commit, dispatch }, price) {
+      PRICE_SET({
+        commit,
+        dispatch
+      }, price) {
         commit('PRICE_SET', price);
         return dispatch('SEARCH_RUN');
       },
-      RADIUS_SET({ commit, dispatch }, radius) {
+      RADIUS_SET({
+        commit,
+        dispatch
+      }, radius) {
         commit('RADIUS_SET', radius);
         return dispatch('SEARCH_RUN');
       },
-      SEARCH_TERM_SET({ commit, dispatch }, searchTerm) {
+      SEARCH_TERM_SET({
+        commit,
+        dispatch
+      }, searchTerm) {
         commit('SEARCH_TERM_SET', searchTerm);
         return dispatch('SEARCH_RUN');
       },
-      PRODUCTS_GET({ commit }) {
+      PRODUCTS_GET({
+        commit
+      }) {
         return axios.post('/graphql', {
-          query: PRODUCTS_QUERY,
-        })
+            query: PRODUCTS_QUERY,
+          })
           .then(data => {
             commit('PRODUCTS_SET', data.data.data.products);
           });
       },
-      SEARCH_RUN({ commit, state }) {
+      SEARCH_RUN({
+        commit,
+        state
+      }) {
         return axios.post('/graphql', {
-          query: LOCATION_QUERY,
-          variables: {
-            lat: state.position.lat,
-            lng: state.position.lng,
-            search: state.searchTerm,
-            radius: state.radius,
-            price: state.price,
-          }
-        })
+            query: LOCATION_QUERY,
+            variables: {
+              lat: state.position.lat,
+              lng: state.position.lng,
+              search: state.searchTerm,
+              radius: state.radius,
+              price: state.price,
+            }
+          })
           .then(data => {
             commit('LOCATIONS_SET', data.data.data.locations);
           });
