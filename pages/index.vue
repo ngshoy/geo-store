@@ -18,10 +18,12 @@
 
 <script>
 import Map from '@/components/Map';
+import Toolbar from '@/components/Toolbar';
 
 export default {
   components: {
     Map,
+    Toolbar
   },
   data: () => ({
     showStorePanel: false,
