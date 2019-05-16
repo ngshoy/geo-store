@@ -19,11 +19,13 @@
 <script>
 import Map from '@/components/Map';
 import Toolbar from '@/components/Toolbar';
+import StoreInfo from '@/components/StoreInfo';
 
 export default {
   components: {
     Map,
-    Toolbar
+    Toolbar,
+    StoreInfo
   },
   data: () => ({
     showStorePanel: false,
